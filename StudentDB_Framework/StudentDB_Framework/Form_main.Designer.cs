@@ -31,29 +31,30 @@ namespace StudentDB_Framework
         /// </summary>
         private void InitializeComponent()
         {
-            button_logout = new Button();
-            SuspendLayout();
+            this.button_logout = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // button_logout
             // 
-            button_logout.Location = new Point(361, 199);
-            button_logout.Name = "button_logout";
-            button_logout.Size = new Size(75, 23);
-            button_logout.TabIndex = 0;
-            button_logout.Text = "Logout";
-            button_logout.UseVisualStyleBackColor = true;
-            button_logout.Click += button_logout_Click;
+            this.button_logout.Location = new System.Drawing.Point(309, 172);
+            this.button_logout.Name = "button_logout";
+            this.button_logout.Size = new System.Drawing.Size(64, 20);
+            this.button_logout.TabIndex = 0;
+            this.button_logout.Text = "Logout";
+            this.button_logout.UseVisualStyleBackColor = true;
+            this.button_logout.Click += new System.EventHandler(this.button_logout_Click);
             // 
             // Form_main
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(button_logout);
-            Name = "Form_main";
-            Text = "Form_main";
-            Load += Form_main_Load;
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(686, 390);
+            this.Controls.Add(this.button_logout);
+            this.Name = "Form_main";
+            this.Text = "Form_main";
+            this.Load += new System.EventHandler(this.Form_main_Load_1);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

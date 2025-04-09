@@ -1,13 +1,13 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace StudentDB_Framework
 {
@@ -35,21 +35,16 @@ namespace StudentDB_Framework
             try
             {
 
-                string exePath = Application.StartupPath;
-                string dbPath = System.IO.Path.Combine(exePath, "StudentDB.mdf");
-
-                // Create connection string using the dynamic path
-                string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;TrustServerCertificate=True";
-
+                // connection string, it is the path/value used to find the database. It can be found in database properties.
+                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\StudentDB.mdf;Integrated Security=True";
 
                 //create sql connection called "con", used to connect to Students database
                 SqlConnection con = new SqlConnection(connectionString);
                 // the sql command you want to execute in DBMS
-                SqlCommand cmd = new SqlCommand("Select * from Students where email = @email", con);
+                SqlCommand cmd = new SqlCommand("Select * from Students where email = @username", con);
 
                 //Assign values to variables. Give TextBox: username -> @username; TextBox: password-> @password
-                cmd.Parameters.AddWithValue("@email", textBox_username.Text);
-                //cmd.Parameters.AddWithValue("@password", textBox_password.Text);
+                cmd.Parameters.AddWithValue("@username", textBox_username.Text);
 
                 //open the connection to DB
                 con.Open();
@@ -89,7 +84,10 @@ namespace StudentDB_Framework
             //====================================================================
         }
 
-        private void textBox_username_TextChanged(object sender, EventArgs e)
+
+
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

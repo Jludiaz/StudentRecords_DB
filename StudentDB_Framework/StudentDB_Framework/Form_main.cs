@@ -34,5 +34,10 @@ namespace StudentDB_Framework
                 fl.Show();
             }
         }
+
+        private void Form_main_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
