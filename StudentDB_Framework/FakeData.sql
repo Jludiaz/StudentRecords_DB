@@ -12,7 +12,7 @@ INSERT INTO Students (gwid, email, first, last, gender) VALUES
 (10010, 'sophia@gwu.edu', 'Sophia', 'Jackson', 'Female');
 
 -- Populate Scholarships
-INSERT INTO Scholarships (sid, Length, Amount) VALUES
+INSERT INTO Scholarships (sid, length, amount) VALUES
 (1, 4, 10000.00),
 (2, 2, 5000.00),
 (3, 1, 2500.00),
