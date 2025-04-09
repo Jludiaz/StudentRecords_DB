@@ -33,7 +33,7 @@ BEGIN
              WHERE GWID IN (SELECT DISTINCT GWID FROM inserted)
              GROUP BY GWID
          ) AS SCounts
-         WHERE SCounts.scholarship_count > 3  -- set your desired limit here
+         WHERE SCounts.scholarship_count > 3
     )
     BEGIN
          ROLLBACK TRANSACTION;
