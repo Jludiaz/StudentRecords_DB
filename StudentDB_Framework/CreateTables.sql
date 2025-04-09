@@ -7,17 +7,17 @@
 );
 
 CREATE TABLE Scholarships (
-    SID INT PRIMARY KEY,
-    Length INT,
-    Amount DECIMAL(10,2)
+    sid INT PRIMARY KEY,
+    length INT,
+    amount DECIMAL(10,2)
 );
 
 CREATE TABLE Has (
-    GWID INT,
-    SID INT,
-    PRIMARY KEY (GWID, SID),
-    FOREIGN KEY (GWID) REFERENCES Students(gwid) ON DELETE CASCADE,
-    FOREIGN KEY (SID) REFERENCES Scholarships(SID) ON DELETE CASCADE
+    gwid INT,
+    sid INT,
+    PRIMARY KEY (gwid, sid),
+    FOREIGN KEY (gwid) REFERENCES Students(gwid) ON DELETE CASCADE,
+    FOREIGN KEY (sid) REFERENCES Scholarships(sid) ON DELETE CASCADE
 );
 
 CREATE TABLE Payments (
@@ -28,15 +28,15 @@ CREATE TABLE Payments (
 );
 
 CREATE TABLE MustPay (
-    GWID INT,
-    PID INT,
-    PRIMARY KEY (GWID, PID),
-    FOREIGN KEY (GWID) REFERENCES Students(gwid) ON DELETE CASCADE,
+    gwid INT,
+    pid INT,
+    PRIMARY KEY (gwid, pid),
+    FOREIGN KEY (gwid) REFERENCES Students(gwid) ON DELETE CASCADE,
     FOREIGN KEY (PID) REFERENCES Payments(pid) ON DELETE CASCADE
 );
 
 CREATE TABLE Tracks (
-    TID INT PRIMARY KEY,
+    tid INT PRIMARY KEY,
     name VARCHAR(100) UNIQUE,
     degree_type VARCHAR(20)
 );
@@ -48,16 +48,16 @@ CREATE TABLE MajorDepartment (
 );
 
 CREATE TABLE IsA (
-    GWID INT,
-    TID INT,
-    Since DATE,
-    PRIMARY KEY (GWID, TID),
-    FOREIGN KEY (GWID) REFERENCES Students(gwid) ON DELETE CASCADE,
-    FOREIGN KEY (TID) REFERENCES Tracks(TID) ON DELETE CASCADE
+    gwid INT,
+    tid INT,
+    since DATE,
+    PRIMARY KEY (gwid, tid),
+    FOREIGN KEY (gwid) REFERENCES Students(gwid) ON DELETE CASCADE,
+    FOREIGN KEY (tid) REFERENCES Tracks(tid) ON DELETE CASCADE
 );
 
 CREATE TABLE Courses (
-    CRN INT PRIMARY KEY,
+    crn INT PRIMARY KEY,
     requires VARCHAR(255),
     name VARCHAR(100),
     section VARCHAR(10),
@@ -65,18 +65,18 @@ CREATE TABLE Courses (
 );
 
 CREATE TABLE TrackRequires (
-    TID INT,
-    CRN INT,
-    PRIMARY KEY (TID, CRN),
-    FOREIGN KEY (TID) REFERENCES Tracks(TID) ON DELETE CASCADE,
-    FOREIGN KEY (CRN) REFERENCES Courses(CRN) ON DELETE CASCADE
+    tid INT,
+    crn INT,
+    PRIMARY KEY (tid, crn),
+    FOREIGN KEY (tid) REFERENCES Tracks(tid) ON DELETE CASCADE,
+    FOREIGN KEY (crn) REFERENCES Courses(crn) ON DELETE CASCADE
 );
 
 CREATE TABLE Taking (
-    GWID INT,
-    CRN INT,
+    gwid INT,
+    crn INT,
     grade CHAR(2),
-    PRIMARY KEY (GWID, CRN),
-    FOREIGN KEY (GWID) REFERENCES Students(gwid) ON DELETE CASCADE,
-    FOREIGN KEY (CRN) REFERENCES Courses(CRN) ON DELETE CASCADE
+    PRIMARY KEY (gwid, crn),
+    FOREIGN KEY (gwid) REFERENCES Students(gwid) ON DELETE CASCADE,
+    FOREIGN KEY (crn) REFERENCES Courses(crn) ON DELETE CASCADE
 );

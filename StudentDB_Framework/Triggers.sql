@@ -6,11 +6,11 @@ BEGIN
     IF EXISTS (
          SELECT 1
          FROM (
-             SELECT t.GWID, c.semester, COUNT(*) AS course_count
+             SELECT t.gwid, c.semester, COUNT(*) AS course_count
              FROM Taking t
-             INNER JOIN Courses c ON t.CRN = c.CRN
-             WHERE t.GWID IN (SELECT DISTINCT GWID FROM inserted)
-             GROUP BY t.GWID, c.semester
+             INNER JOIN Courses c ON t.crn = c.crn
+             WHERE t.gwid IN (SELECT DISTINCT gwid FROM inserted)
+             GROUP BY t.gwid, c.semester
          ) AS Enrollment
          WHERE Enrollment.course_count > 6
     )
@@ -20,6 +20,7 @@ BEGIN
     END
 END;
 GO
+
 CREATE TRIGGER limit_scholarships
 ON Has
 AFTER INSERT
@@ -28,10 +29,10 @@ BEGIN
     IF EXISTS (
          SELECT 1
          FROM (
-             SELECT GWID, COUNT(*) AS scholarship_count
+             SELECT gwid, COUNT(*) AS scholarship_count
              FROM Has
-             WHERE GWID IN (SELECT DISTINCT GWID FROM inserted)
-             GROUP BY GWID
+             WHERE gwid IN (SELECT DISTINCT gwid FROM inserted)
+             GROUP BY gwid
          ) AS SCounts
          WHERE SCounts.scholarship_count > 3
     )
@@ -50,7 +51,7 @@ BEGIN
          SELECT 1
          FROM inserted
          WHERE requires IS NOT NULL 
-           AND requires = CAST(CRN AS VARCHAR(255))
+           AND requires = CAST(crn AS VARCHAR(255))
     )
     BEGIN
          ROLLBACK TRANSACTION;
