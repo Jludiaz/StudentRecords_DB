@@ -35,8 +35,12 @@ namespace StudentDB_Framework
             try
             {
 
-                // connection string, it is the path/value used to find the database. It can be found in database properties.
-                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=|DataDictionary|\StudentDB.mdf;Integrated Security=True; TrustServerCertificate = True";
+                string exePath = Application.StartupPath;
+                string dbPath = System.IO.Path.Combine(exePath, "StudentDB.mdf");
+
+                // Create connection string using the dynamic path
+                string connectionString = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={dbPath};Integrated Security=True;TrustServerCertificate=True";
+
 
                 //create sql connection called "con", used to connect to Students database
                 SqlConnection con = new SqlConnection(connectionString);
