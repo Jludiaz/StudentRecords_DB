@@ -94,6 +94,7 @@ namespace StudentDB_Framework
 
         private void button_deleteUser_Click(object sender, EventArgs e)
         {
+            // Show confirmation dialog
             DialogResult result = MessageBox.Show(
                 "Are you sure you want to delete this user?\n\nThis will delete ALL information related to this user across all tables.\nThis action cannot be undone.",
                 "Confirm User Deletion",
@@ -109,77 +110,81 @@ namespace StudentDB_Framework
                     using (SqlConnection con = new SqlConnection(connectionString))
                     {
                         con.Open();
-                        SqlTransaction transaction = con.BeginTransaction();
 
-                        try
+                        // Get the ID of the student before deleting
+                        string getIdQuery = "SELECT gwid FROM Students WHERE email = @email";
+                        SqlCommand getIdCmd = new SqlCommand(getIdQuery, con);
+                        getIdCmd.Parameters.AddWithValue("@email", userEmail);
+
+                        object studentId = getIdCmd.ExecuteScalar();
+
+                        if (studentId != null)
                         {
-                            // First, get the student's GWID since that's used as a foreign key in other tables
-                            SqlCommand getGwidCmd = new SqlCommand(
-                                "SELECT gwid FROM Students WHERE email = @email", con, transaction);
-                            getGwidCmd.Parameters.AddWithValue("@email", userEmail);
+                            // Begin transaction for cascading delete
+                            using (SqlTransaction transaction = con.BeginTransaction())
+                            {
+                                try
+                                {
+                                    // Delete from Taking table
+                                    SqlCommand deleteTakingCmd = new SqlCommand(
+                                        "DELETE FROM Taking WHERE gwid = @id", con, transaction);
+                                    deleteTakingCmd.Parameters.AddWithValue("@id", studentId);
+                                    deleteTakingCmd.ExecuteNonQuery();
 
-                            var gwid = getGwidCmd.ExecuteScalar();
+                                    // Delete from MustPay relationship
+                                    SqlCommand deleteMustPayCmd = new SqlCommand(
+                                        "DELETE FROM MustPay WHERE gwid = @id", con, transaction);
+                                    deleteMustPayCmd.Parameters.AddWithValue("@id", studentId);
+                                    deleteMustPayCmd.ExecuteNonQuery();
 
-                            if (gwid != null)
-                            { 
-                                // Delete from Taking table
-                                SqlCommand deleteTakingCmd = new SqlCommand(
-                                    "DELETE FROM Taking WHERE gwid = @gwid", con, transaction);
-                                deleteTakingCmd.Parameters.AddWithValue("@gwid", gwid);
-                                deleteTakingCmd.ExecuteNonQuery();
+                                    // Delete from Has relationship (scholarships)
+                                    SqlCommand deleteHasCmd = new SqlCommand(
+                                        "DELETE FROM Has WHERE gwid = @id", con, transaction);
+                                    deleteHasCmd.Parameters.AddWithValue("@id", studentId);
+                                    deleteHasCmd.ExecuteNonQuery();
 
-                                // Delete from Payments table (if it exists and has a relationship to Students)
-                                SqlCommand deletePaymentsCmd = new SqlCommand(
-                                    "DELETE FROM Payments WHERE gwid = @gwid", con, transaction);
-                                deletePaymentsCmd.Parameters.AddWithValue("@gwid", gwid);
-                                deletePaymentsCmd.ExecuteNonQuery();
+                                    // Delete from IsA relationship
+                                    SqlCommand deleteIsACmd = new SqlCommand(
+                                        "DELETE FROM IsA WHERE gwid = @id", con, transaction);
+                                    deleteIsACmd.Parameters.AddWithValue("@id", studentId);
+                                    deleteIsACmd.ExecuteNonQuery();
 
-                                // Delete from MustPay table (if it exists and has a relationship to Students)
-                                SqlCommand deleteMustPayCmd = new SqlCommand(
-                                    "DELETE FROM MustPay WHERE gwid = @gwid", con, transaction);
-                                deleteMustPayCmd.Parameters.AddWithValue("@gwid", gwid);
-                                deleteMustPayCmd.ExecuteNonQuery();
+                                    // Finally delete from Students table
+                                    SqlCommand deleteStudentCmd = new SqlCommand(
+                                        "DELETE FROM Students WHERE gwid = @id", con, transaction);
+                                    deleteStudentCmd.Parameters.AddWithValue("@id", studentId);
+                                    deleteStudentCmd.ExecuteNonQuery();
 
-                                // Delete from Has table (if it exists and has a relationship to Students)
-                                SqlCommand deleteHasCmd = new SqlCommand(
-                                    "DELETE FROM Has WHERE gwid = @gwid", con, transaction);
-                                deleteHasCmd.Parameters.AddWithValue("@gwid", gwid);
-                                deleteHasCmd.ExecuteNonQuery();
+                                    // Commit all changes
+                                    transaction.Commit();
 
-                                // Delete from IsA table (if it exists and has a relationship to Students)
-                                SqlCommand deleteIsACmd = new SqlCommand(
-                                    "DELETE FROM IsA WHERE gwid = @gwid", con, transaction);
-                                deleteIsACmd.Parameters.AddWithValue("@gwid", gwid);
-                                deleteIsACmd.ExecuteNonQuery();
+                                    MessageBox.Show("User and all related records have been deleted successfully.",
+                                        "Delete Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                // Finally, delete from Students table
-                                SqlCommand deleteStudentCmd = new SqlCommand(
-                                    "DELETE FROM Students WHERE gwid = @gwid", con, transaction);
-                                deleteStudentCmd.Parameters.AddWithValue("@gwid", gwid);
-                                deleteStudentCmd.ExecuteNonQuery();
-
-                                // Commit the transaction
-                                transaction.Commit();
-
-                                MessageBox.Show("User has been successfully deleted from all tables.",
-                                    "User Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                this.Hide();
-                                Form_login loginForm = new Form_login();
-                                loginForm.Show();
+                                    // Return to login form
+                                    this.Hide();
+                                    Form_login loginForm = new Form_login();
+                                    loginForm.Show();
+                                }
+                                catch (Exception ex)
+                                {
+                                    // Roll back transaction if any error occurs
+                                    transaction.Rollback();
+                                    MessageBox.Show("Transaction error: " + ex.Message,
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            // If anything goes wrong, roll back the transaction
-                            transaction.Rollback();
-                            throw ex; // Re-throw to be caught by outer catch
+                            MessageBox.Show("Could not find user with email: " + userEmail,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error deleting user: " + ex.Message,
+                    MessageBox.Show("Error: " + ex.Message,
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
