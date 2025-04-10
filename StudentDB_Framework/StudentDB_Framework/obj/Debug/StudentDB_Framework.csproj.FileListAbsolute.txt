@@ -24,3 +24,4 @@ C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\Stud
 C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.Properties.Resources.resources
 C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.csproj.GenerateResource.cache
 C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.csproj.CoreCompileInputs.cache
+C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.form_user.resources

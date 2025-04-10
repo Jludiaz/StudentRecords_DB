@@ -143,16 +143,12 @@ namespace StudentDB_Framework
             }
         }
 
-        // Logout button click event
         private void button_logout_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                // Hide this form
                 this.Hide();
-
-                // Create and show the login form
                 Form_login fl = new Form_login();
                 fl.Show();
             }
@@ -204,6 +200,11 @@ namespace StudentDB_Framework
                 MessageBox.Show("Search error: " + ex.Message);
             }
         }
-
+        private void button_userinfo_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            form_user userForm = new form_user(userEmail);
+            userForm.Show();
+        }
     }
 }
