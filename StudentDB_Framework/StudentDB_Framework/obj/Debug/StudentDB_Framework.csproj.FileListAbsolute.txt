@@ -25,3 +25,17 @@ C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\Stud
 C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.csproj.GenerateResource.cache
 C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.csproj.CoreCompileInputs.cache
 C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.form_user.resources
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.csproj.AssemblyReference.cache
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.Form_login.resources
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.form_user.resources
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.Form_main.resources
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.Properties.Resources.resources
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.csproj.GenerateResource.cache
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.csproj.CoreCompileInputs.cache
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.exe
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\obj\Debug\StudentDB_Framework.pdb
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\bin\Debug\StudentDB.mdf
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\bin\Debug\StudentDB_log.ldf
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\bin\Debug\StudentDB_Framework.exe.config
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\bin\Debug\StudentDB_Framework.exe
+C:\Users\jludiaz\Source\Repos\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\bin\Debug\StudentDB_Framework.pdb
