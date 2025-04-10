@@ -31,6 +31,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button_main = new System.Windows.Forms.Button();
             this.button_logout = new System.Windows.Forms.Button();
+            this.button_deleteUser = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,11 +63,22 @@
             this.button_logout.UseVisualStyleBackColor = true;
             this.button_logout.Click += new System.EventHandler(this.buttonlogout_Click);
             // 
+            // button_deleteUser
+            // 
+            this.button_deleteUser.Location = new System.Drawing.Point(12, 415);
+            this.button_deleteUser.Name = "button_deleteUser";
+            this.button_deleteUser.Size = new System.Drawing.Size(119, 23);
+            this.button_deleteUser.TabIndex = 3;
+            this.button_deleteUser.Text = "Delete User";
+            this.button_deleteUser.UseVisualStyleBackColor = true;
+            this.button_deleteUser.Click += new System.EventHandler(this.button_deleteUser_Click);
+            // 
             // form_user
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_deleteUser);
             this.Controls.Add(this.button_logout);
             this.Controls.Add(this.button_main);
             this.Controls.Add(this.dataGridView1);
@@ -83,5 +95,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button_main;
         private System.Windows.Forms.Button button_logout;
+        private System.Windows.Forms.Button button_deleteUser;
     }
 }
