@@ -79,21 +79,21 @@ INSERT INTO IsA (gwid, tid, since) VALUES
 
 INSERT INTO Courses (crn, requires, name, section, semester) VALUES
 (20101, 'None', 'Introduction to Programming', '01', 'Spring 2025'),
-(20102, 'CRN 20101', 'Data Structures', '01', 'Spring 2025'),
-(20103, 'CRN 20102', 'Algorithms', '01', 'Spring 2025'),
+(20102, '20101', 'Data Structures', '01', 'Spring 2025'),
+(20103, '20102', 'Algorithms', '01', 'Spring 2025'),
 (20201, 'None', 'American Government', '01', 'Spring 2025'),
-(20202, 'CRN 20201', 'International Relations', '01', 'Spring 2025'),
+(20202, '20201', 'International Relations', '01', 'Spring 2025'),
 (20301, 'None', 'Principles of Management', '01', 'Spring 2025'),
-(20302, 'CRN 20301', 'Marketing Fundamentals', '01', 'Spring 2025'),
+(20302, '20301', 'Marketing Fundamentals', '01', 'Spring 2025'),
 (20401, 'None', 'Engineering Mechanics', '01', 'Spring 2025'),
-(20402, 'CRN 20401', 'Thermodynamics', '01', 'Spring 2025'),
+(20402, '20401', 'Thermodynamics', '01', 'Spring 2025'),
 (20501, 'None', 'Introduction to Literary Analysis', '01', 'Spring 2025'),
 (20601, 'None', 'General Biology', '01', 'Spring 2025'),
-(20602, 'CRN 20601', 'Cell Biology', '01', 'Spring 2025'),
+(20602, '20601', 'Cell Biology', '01', 'Spring 2025'),
 (20701, 'None', 'Microeconomics', '01', 'Spring 2025'),
-(20702, 'CRN 20701', 'Macroeconomics', '01', 'Spring 2025'),
+(20702, '20701', 'Macroeconomics', '01', 'Spring 2025'),
 (20801, 'None', 'General Chemistry', '01', 'Spring 2025'),
-(20802, 'CRN 20801', 'Organic Chemistry', '01', 'Spring 2025');
+(20802, '20801', 'Organic Chemistry', '01', 'Spring 2025');
 
 INSERT INTO TrackRequires (tid, crn) VALUES
 (1, 20101), (1, 20102), (1, 20103),
