@@ -1,4 +1,3 @@
-﻿-- Populate Students
 INSERT INTO Students (gwid, email, first, last, gender) VALUES 
 (10001, 'john@gwu.edu', 'John', 'Smith', 'Male'),
 (10002, 'sarah@gwu.edu', 'Sarah', 'Jones', 'Female'),
@@ -11,7 +10,6 @@ INSERT INTO Students (gwid, email, first, last, gender) VALUES
 (10009, 'daniel@gwu.edu', 'Daniel', 'Moore', 'Male'),
 (10010, 'sophia@gwu.edu', 'Sophia', 'Jackson', 'Female');
 
--- Populate Scholarships
 INSERT INTO Scholarships (sid, length, amount) VALUES
 (1, 4, 10000.00),
 (2, 2, 5000.00),
@@ -19,7 +17,6 @@ INSERT INTO Scholarships (sid, length, amount) VALUES
 (4, 4, 15000.00),
 (5, 3, 7500.00);
 
--- Populate Has (Students with Scholarships)
 INSERT INTO Has (gwid, sid) VALUES
 (10001, 1),
 (10002, 2),
@@ -28,7 +25,6 @@ INSERT INTO Has (gwid, sid) VALUES
 (10008, 5),
 (10010, 1);
 
--- Populate Payments
 INSERT INTO Payments (pid, payment_type, amount_due, due_date) VALUES
 (1, 'Tuition', 12000.00, '2025-01-15'),
 (2, 'Housing', 8000.00, '2025-01-20'),
@@ -37,7 +33,6 @@ INSERT INTO Payments (pid, payment_type, amount_due, due_date) VALUES
 (5, 'Technology Fee', 300.00, '2025-01-15'),
 (6, 'Lab Fee', 150.00, '2025-01-25');
 
--- Populate MustPay
 INSERT INTO MustPay (gwid, pid) VALUES
 (10001, 1), (10001, 3),
 (10002, 1), (10002, 2), (10002, 4),
@@ -50,7 +45,6 @@ INSERT INTO MustPay (gwid, pid) VALUES
 (10009, 1), (10009, 5), (10009, 6),
 (10010, 1), (10010, 2);
 
--- Populate Tracks
 INSERT INTO Tracks (tid, name, degree_type) VALUES
 (1, 'Computer Science', 'BS'),
 (2, 'Political Science', 'BA'),
@@ -61,7 +55,6 @@ INSERT INTO Tracks (tid, name, degree_type) VALUES
 (7, 'Economics', 'BA'),
 (8, 'Chemistry', 'BS');
 
--- Populate MajorDepartment
 INSERT INTO MajorDepartment (name, department) VALUES
 ('Computer Science', 'Engineering'),
 ('Political Science', 'Social Sciences'),
@@ -72,7 +65,6 @@ INSERT INTO MajorDepartment (name, department) VALUES
 ('Economics', 'Social Sciences'),
 ('Chemistry', 'Natural Sciences');
 
--- Populate IsA (Student Tracks)
 INSERT INTO IsA (gwid, tid, since) VALUES
 (10001, 1, '2023-08-25'),
 (10002, 5, '2023-08-25'),
@@ -85,7 +77,6 @@ INSERT INTO IsA (gwid, tid, since) VALUES
 (10009, 8, '2022-08-26'),
 (10010, 3, '2024-01-10');
 
--- Populate Courses
 INSERT INTO Courses (crn, requires, name, section, semester) VALUES
 (20101, 'None', 'Introduction to Programming', '01', 'Spring 2025'),
 (20102, 'CRN 20101', 'Data Structures', '01', 'Spring 2025'),
@@ -104,7 +95,6 @@ INSERT INTO Courses (crn, requires, name, section, semester) VALUES
 (20801, 'None', 'General Chemistry', '01', 'Spring 2025'),
 (20802, 'CRN 20801', 'Organic Chemistry', '01', 'Spring 2025');
 
--- Populate TrackRequires
 INSERT INTO TrackRequires (tid, crn) VALUES
 (1, 20101), (1, 20102), (1, 20103),
 (2, 20201), (2, 20202),
@@ -115,7 +105,6 @@ INSERT INTO TrackRequires (tid, crn) VALUES
 (7, 20701), (7, 20702),
 (8, 20801), (8, 20802);
 
--- Populate Taking
 INSERT INTO Taking (gwid, crn, grade) VALUES
 (10001, 20101, '4.0'), (10001, 20102, '3.3'),
 (10002, 20501, '3.7'),
