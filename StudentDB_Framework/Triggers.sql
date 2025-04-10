@@ -38,7 +38,7 @@ BEGIN
     )
     BEGIN
          ROLLBACK TRANSACTION;
-         THROW 50001, 'Student cannot have more than 2 scholarships', 1;
+         THROW 50001, 'Student cannot have more than 3 scholarships', 1;
     END
 END;
 GO
