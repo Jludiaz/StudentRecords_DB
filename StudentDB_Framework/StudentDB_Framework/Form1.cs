@@ -13,6 +13,7 @@ namespace StudentDB_Framework
 {
     public partial class Form_login : Form
     {
+       //This code is fully ripped from our lab
         public Form_login()
         {
             InitializeComponent();
@@ -83,9 +84,6 @@ namespace StudentDB_Framework
             }
             //====================================================================
         }
-
-
-
 
         private void Form1_Load(object sender, EventArgs e)
         {

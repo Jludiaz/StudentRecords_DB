@@ -7,7 +7,7 @@ namespace StudentDB_Framework
 {
     public partial class Form_main : Form
     {
-        private string userEmail; // Store the logged-in user's email
+        private string userEmail; //store the user email, make it private for security
 
         // Constructor with email parameter - used when coming from login
         public Form_main(string email)
@@ -21,27 +21,14 @@ namespace StudentDB_Framework
         {
             InitializeComponent();
         }
-
-        // Form load event - loads data for the logged-in user
         private void Form_main_Load_1(object sender, EventArgs e)
         {
-            // Clear initial label values
-            label6.Text = "";
-            label7.Text = "";
-            label8.Text = "";
-
-            if (!string.IsNullOrEmpty(userEmail))
-            {
-                LoadStudentGrades();
-                CalculateAndDisplayGradeStats(); // Calculate grade statistics
-            }
-            else
-            {
-                MessageBox.Show("No user email provided. Cannot load grades.");
-            }
+            LoadStudentGrades(); //Call our two functions 
+            CalculateAndDisplayGradeStats();
         }
 
-        // Load student data for the specific logged-in user
+        //So this function will make a db connection like we learned in lab 6 and we display a query showing classes
+        //This query is pulled directly from our queries that we made
         private void LoadStudentGrades()
         {
             try
@@ -61,12 +48,11 @@ namespace StudentDB_Framework
 
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@email", userEmail);
-
+                    // This is making a table in C#
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
-                    // Display results directly without binding sources
                     dataGridView1.DataSource = dt;
                 }
             }
@@ -76,7 +62,7 @@ namespace StudentDB_Framework
             }
         }
 
-        // Calculate and display grade statistics
+        //THis function does the same thing as above essentially but we are getting grade statistics
         private void CalculateAndDisplayGradeStats()
         {
             try
@@ -87,7 +73,7 @@ namespace StudentDB_Framework
                 {
                     con.Open();
 
-                    // Query to calculate MAX grade
+                    // MAX
                     string maxQuery = @"SELECT MAX(CAST(grade AS FLOAT)) 
                                       FROM Students s
                                       JOIN Taking t ON s.gwid = t.gwid
@@ -97,7 +83,7 @@ namespace StudentDB_Framework
                     maxCmd.Parameters.AddWithValue("@email", userEmail);
                     object maxResult = maxCmd.ExecuteScalar();
 
-                    // Query to calculate MIN grade
+                    // MIN
                     string minQuery = @"SELECT MIN(CAST(grade AS FLOAT)) 
                                       FROM Students s
                                       JOIN Taking t ON s.gwid = t.gwid
@@ -107,7 +93,7 @@ namespace StudentDB_Framework
                     minCmd.Parameters.AddWithValue("@email", userEmail);
                     object minResult = minCmd.ExecuteScalar();
 
-                    // Query to calculate AVG grade
+                    // AVG
                     string avgQuery = @"SELECT AVG(CAST(grade AS FLOAT)) 
                                       FROM Students s
                                       JOIN Taking t ON s.gwid = t.gwid
@@ -154,16 +140,15 @@ namespace StudentDB_Framework
             }
         }
 
-        // Search functionality
+        // Making a textbox that can search
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            // Get the search term from the textbox
-            string searchTerm = textBox1.Text.Trim().ToLower();
+            string value = textBox1.Text.Trim().ToLower();
 
             try
             {
                 // If search box is empty, show all grades
-                if (string.IsNullOrEmpty(searchTerm))
+                if (string.IsNullOrEmpty(value))
                 {
                     LoadStudentGrades();
                     return;
@@ -185,13 +170,12 @@ namespace StudentDB_Framework
 
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@email", userEmail);
-                    cmd.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
+                    cmd.Parameters.AddWithValue("@search", "%" + value + "%");
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
-                    // Display filtered results directly
                     dataGridView1.DataSource = dt;
                 }
             }
@@ -200,6 +184,7 @@ namespace StudentDB_Framework
                 MessageBox.Show("Search error: " + ex.Message);
             }
         }
+        // Simple form hide that takes us to our user information form
         private void button_userinfo_Click(object sender, EventArgs e)
         {
             this.Hide();

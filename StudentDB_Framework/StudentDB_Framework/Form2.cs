@@ -98,7 +98,6 @@ namespace StudentDB_Framework
 
 		private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 		{
-			// Find the first name column index
 			int firstNameColumnIndex = -1;
 			for (int i = 0; i < dataGridView1.Columns.Count; i++)
 			{
@@ -108,8 +107,6 @@ namespace StudentDB_Framework
 					break;
 				}
 			}
-
-			// Check if a valid row is clicked and it's the first name column
 			if (e.RowIndex >= 0 && e.ColumnIndex == firstNameColumnIndex)
 			{
 				EditFirstName();
@@ -125,10 +122,8 @@ namespace StudentDB_Framework
 		{
 			try
 			{
-				// Check if a row is selected
 				if (dataGridView1.SelectedRows.Count > 0)
 				{
-					// Find the first name column
 					int firstNameColumnIndex = -1;
 					for (int i = 0; i < dataGridView1.Columns.Count; i++)
 					{
@@ -141,10 +136,8 @@ namespace StudentDB_Framework
 
 					if (firstNameColumnIndex >= 0)
 					{
-						// Get the current value
 						string currentFirstName = dataGridView1.SelectedRows[0].Cells[firstNameColumnIndex].Value.ToString();
 
-						// Prompt user for new value - using Windows Forms dialog since Interaction.InputBox requires Microsoft.VisualBasic reference
 						Form inputForm = new Form();
 						inputForm.Width = 300;
 						inputForm.Height = 150;
@@ -182,7 +175,6 @@ namespace StudentDB_Framework
 
 						DialogResult result = inputForm.ShowDialog();
 
-						// If OK was clicked and text is not empty or unchanged
 						if (result == DialogResult.OK && !string.IsNullOrEmpty(textBox.Text) && textBox.Text != currentFirstName)
 						{
 							UpdateFirstName(textBox.Text);
@@ -235,17 +227,16 @@ namespace StudentDB_Framework
 				MessageBox.Show("Error updating first name: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-
+		// Takes you back to the main page
 		private void buttonmain_Click(object sender, EventArgs e)
 		{
 			this.Hide();
 			Form_main mainForm = new Form_main(userEmail);
 			mainForm.Show();
 		}
-
+		//Lets you logout, same as the main page
 		private void buttonlogout_Click(object sender, EventArgs e)
 		{
-			// Logout to login form
 			var result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo);
 			if (result == DialogResult.Yes)
 			{
