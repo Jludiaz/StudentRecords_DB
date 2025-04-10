@@ -36,7 +36,7 @@ namespace StudentDB_Framework
             {
 
                 // connection string, it is the path/value used to find the database. It can be found in database properties.
-                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=|DataDirectory|\StudentDB.mdf;Integrated Security=True";
+                string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB; AttachDbFilename=C:\Users\buneabt\source\repos\Jludiaz\StudentRecords_DB\StudentDB_Framework\StudentDB_Framework\StudentDB.mdf;Integrated Security=True";
 
                 //create sql connection called "con", used to connect to Students database
                 SqlConnection con = new SqlConnection(connectionString);
