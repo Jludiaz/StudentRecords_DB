@@ -67,7 +67,7 @@ namespace StudentDB_Framework
                 {
                     MessageBox.Show("Login Successful!");
                     this.Hide();
-                    Form_main fm = new Form_main();
+                    Form_main fm = new Form_main(textBox_username.Text); // Pass email to constructor
                     fm.Show();
                 }
                 else
